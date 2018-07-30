@@ -674,7 +674,10 @@ etaApp.controller('UserCtrl', function ($scope, $rootScope) {
 
 $scope.loginGoogle = function() {
 	try {
-		firebase.initializeApp()
+		try {
+			firebase.initializeApp()
+		} catch (error) {
+		}
 		var provider = new firebase.auth.GoogleAuthProvider();
 		firebase.auth().signInWithRedirect(provider).then(function() {
 			return firebase.auth().getRedirectResult();
