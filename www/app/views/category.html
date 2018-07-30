@@ -1,0 +1,25 @@
+<div class="container-fluid" ng-init="sLoadCategory()" style="position: relative;">
+
+	<!-- 	<h2 class="sectionDivider categoryName">{{categoryName}}</h2> -->
+
+	<div class="owl-carousel" style="margin-top: -15px;">
+		<div ng-repeat="b in promosBanners">
+			<a href="javascript:void(0)">
+				<img ng-src="{{b.txtPathImg}}" />
+			</a>
+		</div>
+	</div>
+
+	<div class="mainArticles row">
+		<div class="mainArticle col-xs-12" ng-repeat="prom in promosProducts" style="margin-bottom: 5px;">
+			<a href="javascript:void(0)" ng-click="openPromoDetail(prom.txtUrl)">
+				<img ng-src="{{prom.txtPathImg}}" />
+				<p class="articleTitle">{{prom.strTittle}}</p>
+				<p class="articleDesc">{{prom.strDetail}}</p>
+				<a href="javascript:void(0)" ng-click="openPromoDetail(prom.txtUrl)" class="articleMainButton">Compra aqui </a>
+			</a>
+			<hr>
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "317719226174",
+    "firebase_url": "https://etafashion-pushnotifications.firebaseio.com",
+    "project_id": "etafashion-pushnotifications",
+    "storage_bucket": "etafashion-pushnotifications.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317719226174:android:736c7d057e6ba6de",
+        "android_client_info": {
+          "package_name": "com.neptuno.eta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "317719226174-t9a0hauirdkg64k1ot95mj49gf2nvnp1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.neptuno.eta",
+            "certificate_hash": "3abaeeeb5de448a5d340ef435b0f004a7cf5830e"
+          }
+        },
+        {
+          "client_id": "317719226174-ldj2dh5ohr1imdvccsmhld6kq2ll00tj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8yBYZZwr53n3PZhwtXurO84MmHpvJJVM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "317719226174-ldj2dh5ohr1imdvccsmhld6kq2ll00tj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

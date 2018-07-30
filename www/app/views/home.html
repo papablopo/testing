@@ -1,0 +1,119 @@
+<!-- <div class="owl-carousel" style="margin-top: -15px;"> -->
+<!-- 	<div ng-repeat="b in banners"> -->
+<!-- 		<a href="javascript:void(0)"> -->
+<!-- 			<img src="img/banners/{{b.id}}.jpg"> -->
+<!-- 		</a> -->
+<!-- 	</div> -->
+<!-- </div> -->
+
+<div class="container-fluid" ng-init="sLoadHome()">
+
+	<div class="owl-carousel carouselBanners" style="margin-top: -15px;">
+		<div ng-repeat="b in promosBanners">
+			<a href="javascript:void(0)" ng-click="openLink(b.txtUrl); trackFb(1);">
+				<img ng-src="{{b.txtPathImg}}" />
+			</a>
+		</div>
+	</div>
+
+	<!-- <div class="w100 centered">
+		<button  ng-click="openPinView()" class="pinButtonHome">
+			<i class="fa fa-lock"></i>
+			<br />
+			Generar Pin
+		</button>
+	</div> -->
+	<h2 class="sectionDivider">¡Nuevo!</h2>
+
+	<!-- 	<div class="mainArticles row"> -->
+	<div class="owl-carousel carouselProducts">
+		<div class="mainArticle" ng-repeat="d in promosProducts">
+			<a href="javascript:void(0)" ng-click="openLink(d.txtUrl); trackFb(2);"
+				class="centered black">
+				<img ng-src="{{d.txtPathImg}}" />
+				<p class="articleTitle">{{d.strTittle}}</p>
+				<!-- <p class="articlePrice">39.95$</p> -->
+			</a>
+		</div>
+	</div>
+
+	<h2 class="sectionDivider">¡Ofertas!</h2>
+
+	<div class="mainArticles row">
+		<div class="mainArticle col-xs-12" ng-repeat="prom in promosOffers"
+			style="margin-bottom: 5px;">
+			<a href="javascript:void(0)" ng-click="openPromoDetail(prom.txtUrl); trackFb(3);">
+				<img ng-src="{{prom.txtPathImg}}" />
+			</a>
+			<hr>
+		</div>
+	</div>
+
+	<div class="owl-carousel carouselBrands" style="margin-bottom: 15px;">
+		<div ng-repeat="b in promosBrands">
+			<a href="javascript:void(0)"  ng-click="openBrandLink(b.txtUrl)">
+				<img ng-src="{{b.txtPathImg}}" />
+			</a>
+		</div>
+	</div>
+
+	<div class="etaFooter">
+
+		<div class="row">
+			<div class="mainArticle col-xs-2">
+				<a href="https://www.facebook.com/ETAFASHIONECUADOR">
+					<i class="fa fa-facebook-square"></i>
+				</a>
+			</div>
+			<div class="mainArticle col-xs-2">
+				<a href="https://twitter.com/etafashion">
+					<i class="fa fa-twitter-square"></i>
+				</a>
+			</div>
+			<div class="mainArticle col-xs-2">
+				<a href="javascript:void(0)" ng-click="openEtaYoutube()">
+					<i class="fa fa-youtube"></i>
+				</a>
+			</div>
+			<div class="mainArticle col-xs-2">
+				<a href="javascript:void(0)" ng-click="openEtaSnapchat()">
+					<i class="fa fa-snapchat-square"></i>
+				</a>
+			</div>
+			<div class="mainArticle col-xs-2">
+				<a href="https://www.instagram.com/etafashion_ec">
+					<i class="fa fa-instagram"></i>
+				</a>
+			</div>
+			<div class="mainArticle col-xs-2">
+				<a href="https://www.etafashion.com/blog/">
+					<i class="fa fa-book"></i>
+				</a>
+			</div>
+
+		</div>
+
+		<div class="row secImageContainer vAlign">
+			<div class="mainArticle col-xs-6 secImage">
+				<img src="img/sec1.png">
+			</div>
+			<div class="mainArticle col-xs-6 secImage">
+				<img src="img/sec2.png">
+			</div>
+		</div>
+
+	</div>
+
+
+
+	<!-- 	<div class="mainBrands row"> -->
+	<!-- 		<div class="mainArticle col-xs-6" ng-repeat="prom in promosBrands" -->
+	<!-- 			style="margin-bottom: 5px;"> -->
+	<!-- 			<a href="javascript:void(0)" ng-click="openPromoDetail(prom.txtUrl)"> -->
+	<!-- 				<img ng-src="{{prom.txtPathImg}}" class="w100" /> -->
+	<!-- 			</a> -->
+	<!-- 			<hr> -->
+	<!-- 		</div> -->
+	<!-- 	</div> -->
+
+</div>

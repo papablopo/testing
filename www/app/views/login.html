@@ -1,0 +1,66 @@
+<div class="loginScreen" ng-init="sLoadLogin();">
+
+	<div class="centeredImg">
+		<img src="img/logoWhite.png" />
+	</div>
+
+	<div class="loginControls">
+
+		<div class="loginControl">
+			<i class="fa fa-user"></i>
+			<input type="text" placeholder="Correo" autocorrect="off" autocapitalize="none" ng-model="username" />
+		</div>
+
+		<div class="loginControl">
+			<i class="fa fa-lock"></i>
+			<input type="password" placeholder="Contraseña" autocorrect="off" autocapitalize="none" ng-model="password" />
+		</div>
+
+		<div class="loginButton">
+			<a href="javascript:void(0)" ng-click="login()">Iniciar</a>
+		</div>
+
+		<div class="loginLinks">
+			<a href="#/passwordRecover" style="text-align: center;">¿Olvidaste tu contraseña?</a>
+		</div>
+
+		<div class="row socialButtons">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 fbBtn">
+				<a href="javascript:void(0)" ng-click="loginFacebook()">
+					<i class="fa fa-facebook-square"></i>
+				</a>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 gpBtn">
+				<a href="javascript:void(0)" ng-click="loginGoogle()">
+					<i class="fa fa-google-plus-square"></i>
+				</a>
+			</div>
+		</div>
+
+		<div class="loginLinks">
+			<a href="#/register1" style="text-align: center;">Registrarse</a>
+		</div>
+
+
+		<!-- <div class="loginButton" style="margin-top: 10px;">
+			<a href="javascript:void(0)" ng-click="generatePin()">Obtener Pin</a>
+		</div> -->
+
+		<!-- <div class="loginLinks" style="position: absolute; bottom: 0; left: 0; right: 0; margin: 0 auto;">
+			<a href="#/home" style="color: #565656;">Omitir</a>
+		</div> -->
+
+
+		<!-- <div class="loginLinks row">
+			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5"
+				style="padding: 0; text-align: right;">
+				<a href="javascript:void(0)" style="text-align: right;">Registrarse</a>
+			</div>
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">|</div>
+			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5"
+				style="padding: 0; text-align: left;">
+				<a href="javascript:void(0)" style="text-align: left;">Omitir</a>
+			</div>
+		</div> -->
+
+	</div>

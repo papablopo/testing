@@ -1,0 +1,29 @@
+<!-- <div class="owl-carousel" style="margin-top: -15px;"> -->
+<!-- 	<div ng-repeat="b in banners"> -->
+<!-- 		<a href="javascript:void(0)"> -->
+<!-- 			<img src="img/banners/{{b.id}}.jpg"> -->
+<!-- 		</a> -->
+<!-- 	</div> -->
+<!-- </div> -->
+
+<div class="container-fluid" ng-init="sLoadPush()">
+
+	<img class="w100" ng-src="{{pushContent.image}}" />
+
+	<h2 class="sectionDivider">{{pushContent.title}}</h2>
+
+	<p class="sectionDivider">{{pushContent.body}}</p>
+
+	<div class="accountButtons" ng-if="!isAccountDetailsShowed">
+		<div class="row" style="margin-top: 25px;">
+			<div class="col-xs-12 col-sm-12 accountButton">
+				<a href="{{pushContent.url}}" ng-click="openPushUrl()"
+					style="color: #DD4C39; margin-bottom: 15px; font-size: 20px;">
+					<i class="fa fa-search" style="font-size: 50px;"></i>
+					<div>{{pushContent.buttonText}}</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+</div>

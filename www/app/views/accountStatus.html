@@ -1,0 +1,118 @@
+<div class="container-fluid" ng-init="sLoadAccountStatus()">
+
+	<h3 style="margin: 0; margin-bottom: 15px;">Tu estado de cuenta</h3>
+
+	<div class="accountData" style="margin-bottom: 15px;">
+		<div class="row">
+			<div class="col-xs-6 accountDataLabel">Fecha de emisión:</div>
+			<div class="col-xs-6 accountDataInfo">{{startDate}}</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 accountDataLabel">Fecha de corte:</div>
+			<div class="col-xs-6 accountDataInfo">{{cutDate}}</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 accountDataLabel">Tu pago anterior:</div>
+			<div class="col-xs-6 accountDataInfo">${{lastPay}}</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 accountDataLabel">Pagos totales:</div>
+			<div class="col-xs-6 accountDataInfo">${{totalPayments}}</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 accountDataLabel">Consumos:</div>
+			<div class="col-xs-6 accountDataInfo">${{currentBill}}</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 accountDataLabel">Total a pagar:</div>
+			<div class="col-xs-6 accountDataInfo">${{currentTotal}}</div>
+		</div>
+	</div>
+
+
+	<!-- 	<div class="row" style="margin-bottom: 15px; margin-top: 30px;"> -->
+	<!-- 		<div class="col-xs-3 col-sm-3 col-md-3">Mes:</div> -->
+	<!-- 		<div class="col-xs-9 col-sm-9 col-md-9 input-group0" -->
+	<!-- 			style="padding-right: 15px;"> -->
+	<!-- 			<select class="w100 form-control"> -->
+	<!-- 				<option value="1">Enero</option> -->
+	<!-- 				<option value="2">Febrero</option> -->
+	<!-- 				<option value="3">Marzo</option> -->
+	<!-- 				<option value="4" selected="selected">Abril</option> -->
+	<!-- 				<option value="5">Mayo</option> -->
+	<!-- 				<option value="6">Junio</option> -->
+	<!-- 				<option value="7">Julio</option> -->
+	<!-- 				<option value="8">Agosto</option> -->
+	<!-- 				<option value="9">Septiembre</option> -->
+	<!-- 				<option value="10">Octubre</option> -->
+	<!-- 				<option value="11">Noviembre</option> -->
+	<!-- 				<option value="12">Diciembre</option> -->
+
+	<!-- 			</select> -->
+	<!-- 		</div> -->
+	<!-- 	</div> -->
+
+	<div class="accountButtons" ng-if="!isAccountDetailsShowed">
+		<div class="row" style="margin-top: 25px;">
+			<div class="col-xs-12 col-sm-12 accountButton">
+				<a href="javascript:void(0)" ng-click="showAccountDetails()">
+					<i class="fa fa-align-justify"></i>
+					<div>Movimientos</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div ng-repeat="d in accountDetails" ng-if="isAccountDetailsShowed">
+		<a href="#/historyDetail">
+			<div class="row historyDetail">
+				<div class="col-xs-9 ">
+					<h4 class="historyDetailLocal">{{d.desc}}</h4>
+					<div class="historyDetailDate">
+						{{d.date}}
+						<br>
+					</div>
+				</div>
+				<div class="col-xs-3">
+					<div class="historyTotal" style="margin-top: 30px;">${{d.payValue}}</div>
+				</div>
+			</div>
+			<!-- <a href="javascript:void(0)">Ver detalle</a> -->
+		</a>
+		<hr style="margin-top: 5px; margin-bottom: 5px;">
+	</div>
+	<!-- 	<a href="#/historyDetail"> -->
+	<!-- 		<div class="row historyDetail"> -->
+	<!-- 			<div class="col-xs-9 "> -->
+	<!-- 				<h4 class="historyDetailLocal">Etafashion CCI</h4> -->
+	<!-- 				<div class="historyDetailDate">Miercoles 8</div> -->
+	<!-- 			</div> -->
+	<!-- 			<div class="col-xs-3"> -->
+	<!-- 				<div class="historyTotal" style="margin-top: 30px;">$94.40</div> -->
+	<!-- 			</div> -->
+	<!-- 		</div> -->
+	<!-- 		<a href="javascript:void(0)">Ver detalle</a> -->
+	<!-- 	</a> -->
+	<!-- 	<hr style="margin-top: 5px; margin-bottom: 5px;"> -->
+	<!-- 	<a href="#/historyDetail"> -->
+	<!-- 		<div class="row historyDetail"> -->
+	<!-- 			<div class="col-xs-9 "> -->
+	<!-- 				<h4 class="historyDetailLocal">Etafashion Quicentro</h4> -->
+	<!-- 				<div class="historyDetailDate">Jueves 2</div> -->
+	<!-- 			</div> -->
+	<!-- 			<div class="col-xs-3"> -->
+	<!-- 				<div class="historyTotal" style="margin-top: 30px;">$22.20</div> -->
+	<!-- 			</div> -->
+	<!-- 		</div> -->
+	<!-- 		<a href="javascript:void(0)">Ver detalle</a> -->
+	<!-- 	</a> -->
+
+	<!-- 	<div class="row summary" style="margin-top: 30px; font-size: 20px;"> -->
+	<!-- 		<div class="col-xs-4"></div> -->
+	<!-- 		<div class="col-xs-4 summaryLabel"> -->
+	<!-- 			<strong>Total:</strong> -->
+	<!-- 		</div> -->
+	<!-- 		<div class="col-xs-4 summaryData" style="text-align: right;">$178.80</div> -->
+	<!-- 	</div> -->
+
+</div>

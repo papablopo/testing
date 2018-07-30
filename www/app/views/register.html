@@ -1,0 +1,76 @@
+<div class="loginScreen">
+
+	<div class="centeredImg">
+		<img src="img/logoWhite.png" />
+	</div>
+
+	<div class="loginControls">
+
+		<div class="loginControl">
+			<i class="fa fa-user"></i>
+			<input type="text" placeholder="Nombre" ng-model="name" />
+		</div>
+
+		<div class="loginControl">
+			<i class="fa fa-user"></i>
+			<input type="text" placeholder="Apellido" ng-model="lastname" />
+		</div>
+		
+		<div class="loginControl">
+			<i class="fa fa-credit-card"></i>
+			<input type="text" placeholder="Cédula"
+				ng-model="identification" />
+		</div>
+
+		<div class="loginControl">
+			<i class="fa fa-at"></i>
+			<input type="text" placeholder="Correo electrónico" autocorrect="off" autocapitalize="none"
+				ng-model="username" />
+		</div>
+
+		<div class="loginControl">
+			<i class="fa fa-lock"></i>
+			<input type="password" placeholder="Contraseña" ng-model="password" />
+		</div>
+
+		<div class="loginControl">
+			<i class="fa fa-lock"></i>
+			<input type="password" placeholder="Repite tu contraseña"
+				ng-model="password2" />
+		</div>
+
+		<div class="loginButton">
+			<a href="javascript:void(0)" ng-click="register()">Registrarse</a>
+		</div>
+
+		<div class="row socialButtons">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 fbBtn">
+				<a href="javascript:void(0)" ng-click="getFacebookData() ">
+					<i class="fa fa-facebook-square"></i>
+				</a>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 gpBtn">
+				<a href="javascript:void(0)">
+					<i class="fa fa-google-plus-square"></i>
+				</a>
+			</div>
+		</div>
+
+		<div class="loginLinks">
+			<a href="#/login">¿Ya tienes cuenta?</a>
+		</div>
+
+
+		<!-- <div class="loginLinks row">
+			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5"
+				style="padding: 0; text-align: right;">
+				<a href="javascript:void(0)" style="text-align: right;">Registrarse</a>
+			</div>
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">|</div>
+			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5"
+				style="padding: 0; text-align: left;">
+				<a href="javascript:void(0)" style="text-align: left;">Omitir</a>
+			</div>
+		</div> -->
+
+	</div>

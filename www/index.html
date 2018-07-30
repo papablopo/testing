@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html ng-app="EtaApp">
+
+<head>
+	<meta name="format-detection" content="telephone=no">
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+	<!-- <meta http-equiv="Content-Security-Policy" -->
+	<!-- 	content="default-src 'self' * gap://ready file:; style-src 'self' 'unsafe-inline' *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; img-src 'self' * data:"> -->
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="css/simple-sidebar.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/simple-sidebar2.css"> -->
+
+
+	<link rel="stylesheet" type="text/css" href="css/etaApp.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/animations.scss"> -->
+	<title>Etafashion</title>
+</head>
+
+<body mn-touch swipe-left="closeSidebar()">
+
+	<div id="loading" style="display: none;">
+		<div>
+			<img src="img/loading.svg" />
+			<br />
+			<p>Cargando</p>
+		</div>
+	</div>
+
+	<div id="closeMessage" style="display: none;">
+		<div style="width: 250px;">
+			<p></p>
+			<a href="javascript:void(0)" onclick="hideCloseMessage()" style="font-size: 14px;">Cerrar</a>
+		</div>
+	</div>
+
+	<div id="wrapper">
+		<div id="page-content-wrapper" class="">
+
+			<nav class="navbar navbar-default headerBar" ng-controller="TemplateCtrl" ng-init="loadSidebar()">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand navbarLeftButton" href="javascript:void(0)" ng-click="toggleSidebar()" id="backButton">
+							<i class="fa fa-bars"></i>
+						</a>
+						<div class="headerLogo">
+							<a href="#/home" ng-click="toHome()">
+								<img class="headerImg" src="img/logo.png" />
+							</a>
+						</div>
+					</div>
+					<form style="position: relative; margin-top: 5px;" ng-submit="goToSearch()">
+						<input type="text" class="searchInput" placeholder="Buscar..." ng-model="txtSearch">
+						<a href="#/search/{{txtSearch}}" style="position: absolute; right: 0; top: 0; font-size: 17px; color: #222;">
+							<i class="fa fa-search"></i>
+						</a>
+					</form>
+				</div>
+			</nav>
+
+			<div class="" ng-view mn-touch swipe-left="closeSidebar()" ng-click="closeSidebar()"></div>
+
+			<div class="etaFooter" ng-class="fixedFooter ? 'posFixed' : ''">
+
+				<div class="row">
+					<div class="mainArticle col-xs-2">
+						<a href="https://www.facebook.com/ETAFASHIONECUADOR">
+							<i class="fa fa-facebook-square"></i>
+						</a>
+					</div>
+					<div class="mainArticle col-xs-2">
+						<a href="https://twitter.com/etafashion">
+							<i class="fa fa-twitter-square"></i>
+						</a>
+					</div>
+					<div class="mainArticle col-xs-2">
+						<a href="javascript:void(0)" ng-click="openEtaYoutube()">
+							<i class="fa fa-youtube"></i>
+						</a>
+					</div>
+					<div class="mainArticle col-xs-2">
+						<a href="javascript:void(0)" ng-click="openEtaSnapchat()">
+							<i class="fa fa-snapchat-square"></i>
+						</a>
+					</div>
+					<div class="mainArticle col-xs-2">
+						<a href="https://www.instagram.com/etafashion_ec">
+							<i class="fa fa-instagram"></i>
+						</a>
+					</div>
+					<div class="mainArticle col-xs-2">
+						<a href="https://www.etafashion.com/blog/">
+							<i class="fa fa-book"></i>
+						</a>
+					</div>
+
+				</div>
+
+				<div class="row secImageContainer vAlign">
+					<div class="mainArticle col-xs-6 secImage">
+						<img src="img/sec1.png">
+					</div>
+					<div class="mainArticle col-xs-6 secImage">
+						<img src="img/sec2.png">
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- Sidebar -->
+		<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation" ng-controller="TemplateCtrl">
+			<div class="sidebar">
+
+				<div class="row userWelcome">
+					<div class="col-xs-12 col-sm-12">
+						<p>
+							Bienvenido
+							<a href="#/account" ng-click="toggleSidebar()">Tu cuenta</a>
+						</p>
+					</div>
+				</div>
+
+				<div class="row sidebarButtons">
+					<div class="col-xs-4 col-sm-4" style="border-right-style: solid; border-width: 1px;">
+						<a href="#/map" ng-click="toggleSidebar()">
+							<i class="fa fa-map-marker"></i>
+							<br> Locales
+						</a>
+					</div>
+					<div class="col-xs-4 col-sm-4" style="border-right-style: solid; border-width: 1px;">
+						<a href="#/home" ng-click="toggleSidebar()">
+							<i class="fa fa-percent"></i>
+							<br> Ofertas
+						</a>
+					</div>
+					<!-- <div class="col-xs-4 col-sm-4">
+						<a href="#/pin" ng-click="toggleSidebar()">
+							<i class="fa fa-lock"></i>
+							<br> Pin
+						</a>
+					</div> -->
+				</div>
+
+				<div class="list-group sidebarList">
+					<!-- <a href="#/pin" class="list-group-item" ng-click="toggleSidebar()">
+						<i class="fa fa-asterisk"></i>
+						Pin para crédito directo
+					</a> -->
+					<hr>
+
+					<!-- <a href="javascript:void(0)" class="list-group-item" ng-click="toggleSidebar()">
+						<i class="fa fa-circle"></i>
+						PlanETA
+						<i class="fa fa-chevron-right faRight"></i>
+					</a> -->
+					<a href="javascript:void(0)" class="list-group-item" ng-click="openEtacash();toggleSidebar();">
+						<i class="fa fa-circle"></i>
+						EtaCash
+						<i class="fa fa-chevron-right faRight"></i>
+					</a>
+					<a href="javascript:void(0)" class="list-group-item" ng-click="openPlaneta();toggleSidebar();">
+						<i class="fa fa-circle"></i>
+						PlanEta
+						<i class="fa fa-chevron-right faRight"></i>
+					</a>
+
+					<hr>
+
+					<a ng-repeat="cat in categories" ng-href="{{cat.id != 8 ? '#/category/' + cat.id + '/' + cat.strDescription : '#/home'}}" class="list-group-item" ng-click="toggleSidebar()" >
+						<i class="fa fa-circle"></i>
+						{{cat.strDescription}}
+						<i class="fa fa-chevron-right faRight"></i>
+					</a>
+
+					<!-- 					<a href="#/category/2/Hombre" class="list-group-item" -->
+					<!-- 						ng-click="toggleSidebar()"> -->
+					<!-- 						<i class="fa fa-male"></i> -->
+					<!-- 						Hombre -->
+					<!-- 						<i class="fa fa-chevron-right faRight"></i> -->
+					<!-- 					</a> -->
+					<!-- 					<a href="#/category/3/Niños" class="list-group-item" -->
+					<!-- 						ng-click="toggleSidebar()"> -->
+					<!-- 						<i class="fa fa-child"></i> -->
+					<!-- 						Niños -->
+					<!-- 						<i class="fa fa-chevron-right faRight"></i> -->
+					<!-- 					</a> -->
+					<!-- 					<a href="#/category/4/Zapatos" class="list-group-item" -->
+					<!-- 						ng-click="toggleSidebar()"> -->
+					<!-- 						<img class="faImg" src="img/faShoe.png" -->
+					<!-- 							style="width: 13px; margin-right: 4px;" /> -->
+					<!-- 						Zapatos -->
+					<!-- 						<i class="fa fa-chevron-right faRight"></i> -->
+					<!-- 					</a> -->
+					<!-- 					<a href="#/category/5/EtaBeauty" class="list-group-item" -->
+					<!-- 						ng-click="toggleSidebar()"> -->
+					<!-- 						<i class="fa fa-heart"></i> -->
+					<!-- 						EtaBeauty -->
+					<!-- 						<i class="fa fa-chevron-right faRight"></i> -->
+					<!-- 					</a> -->
+					<!-- 					<a href="#/category/6/Accesorios" class="list-group-item" -->
+					<!-- 						ng-click="toggleSidebar()"> -->
+					<!-- 						<i class="fa fa-gift"></i> -->
+					<!-- 						Accesorios -->
+					<!-- 						<i class="fa fa-chevron-right faRight"></i> -->
+					<!-- 					</a> -->
+					<!-- 					<a href="#/category/7/Tecnología" class="list-group-item" -->
+					<!-- 						ng-click="toggleSidebar()"> -->
+					<!-- 						<i class="fa fa-bolt"></i> -->
+					<!-- 						Tecnología -->
+					<!-- 						<i class="fa fa-chevron-right faRight"></i> -->
+					<!-- 					</a> -->
+				</div>
+
+				<div class="row sidebarFooter">
+					<div class="col-xs-3 col-sm-3">
+						<a href="#/privacy" ng-click="toggleSidebar()">
+							<i class="fa fa-lock"></i>
+							<br> Privacidad
+						</a>
+					</div>
+					<div class="col-xs-3 col-sm-3">
+						<a href="#/help" ng-click="toggleSidebar()">
+							<i class="fa fa-question"></i>
+							<br> Ayuda
+						</a>
+					</div>
+					<div class="col-xs-3 col-sm-3">
+						<a href="#/aboutEta" ng-click="toggleSidebar()">
+							<img src="img/headerLittleGray.png" / style="height: 21px;">
+							<br> Etafashion
+						</a>
+					</div>
+					<div class="col-xs-3 col-sm-3">
+						<a href="#/aboutApp" ng-click="toggleSidebar()">
+							<i class="fa fa-info"></i>
+							<br> Acerca
+						</a>
+					</div>
+				</div>
+
+			</div>
+		</nav>
+
+	</div>
+
+	<div id="errorModal" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Error</h4>
+				</div>
+				<div class="modal-body">
+					<p name="txtMessage"></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/lib/jquery-3.1.1.js"></script>
+	<script type="text/javascript" src="js/lib/bootstrap.js"></script>
+	<script type="text/javascript" src="js/lib/jsencrypt.min.js"></script>
+	
+
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/lib/angular.js"></script>
+	<script type="text/javascript" src="js/lib/angular-route.js"></script>
+	<script type="text/javascript" src="js/lib/angular-animate.min.js"></script>
+	<script type="text/javascript" src="js/lib/mntouch.js"></script>
+
+	<script type="text/javascript" src="js/lib/owl.carousel.min.js"></script>
+
+	<script type="text/javascript" src="js/lib/firebase.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/config.js"></script>
+	<script type="text/javascript" src="js/wsCalls.js"></script>
+
+	<script type="text/javascript" src="app/controllers/templateController.js"></script>
+	<script type="text/javascript" src="app/controllers/usersController.js"></script>
+	<script type="text/javascript" src="app/controllers/productsController.js"></script>
+
+
+
+	<!-- <script type="text/javascript" src="js/controllers.js"></script> -->
+</body>
+
+</html>

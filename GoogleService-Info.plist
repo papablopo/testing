@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>317719226174-qbk9v9kbam96v6931114g07ccraevia8.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.317719226174-qbk9v9kbam96v6931114g07ccraevia8</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBqRSuA2S477y_oiJoTW2iW7BXPfiDsBl8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>317719226174</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.neptuno.et</string>
+	<key>PROJECT_ID</key>
+	<string>etafashion-pushnotifications</string>
+	<key>STORAGE_BUCKET</key>
+	<string>etafashion-pushnotifications.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:317719226174:ios:3da4a15d783ebae6</string>
+	<key>DATABASE_URL</key>
+	<string>https://etafashion-pushnotifications.firebaseio.com</string>
+</dict>
+</plist>

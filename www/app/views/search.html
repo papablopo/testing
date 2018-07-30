@@ -1,0 +1,47 @@
+
+<div class="container-fluid" ng-init="sLoadSearch()"
+	style="position: relative;">
+
+	<style>
+iframe {
+	width: 100%;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+</style>
+
+	<h3 class="sectionDivider" style="margin-top: 0;">Resultados para
+		"{{parKeyword}}"</h3>
+
+	<div class="owl-carousel" style="margin-top: -15px;">
+		<div ng-repeat="b in promosBanners">
+			<a href="javascript:void(0)">
+				<img ng-src="{{b.txtPathImg}}" />
+			</a>
+		</div>
+	</div>
+
+	<div class="emptyMessage"
+		ng-if="showTextEmptySearch && promosProducts.length == 0">No se
+		encontraron resultados para tu búsqueda</div>
+
+	<div class="mainArticles row">
+		<div class="mainArticle col-xs-12" ng-repeat="prom in promosProducts"
+			style="margin-bottom: 5px;">
+			<a href="javascript:void(0)" ng-click="openPromoDetail(prom.txtUrl)">
+				<img ng-src="{{prom.txtPathImg}}" />
+				<p class="articleTitle">{{prom.strTittle}}</p>
+				<p class="articleDesc">{{prom.strDetail}}</p>
+				<a href="javascript:void(0)" ng-click="openPromoDetail(prom.txtUrl)"
+					class="articleMainButton">Compra aqui </a>
+			</a>
+			<hr>
+		</div>
+	</div>
+
+	<div class="w100" style="text-align: center;">
+		<a href="javascript:void(0)" ng-click="openSearchDetail()"
+			class="lonelyButton">Ver más resultados</a>
+	</div>
+
+</div>

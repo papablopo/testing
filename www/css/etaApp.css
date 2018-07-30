@@ -1,0 +1,651 @@
+.w100 {
+	width: 100%;
+}
+
+input:focus,
+textarea:focus {
+	outline: none;
+}
+
+.welcomeScreen {
+	background: #222;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	color: #aaa;
+	z-index: 1;
+}
+
+.welcomeScreen .mainText {
+	margin-top: 50px;
+	font-size: 25px;
+}
+
+.welcomeScreen .infoText {
+	font-size: 15px;
+	padding: 0 50px;
+}
+
+.welcomeScreen .centeredImg {
+	margin-top: 150px;
+}
+
+.welcomeScreen .steps {
+	margin-top: 50px;
+	position: absolute;
+	width: 100%;
+	bottom: 75px;
+}
+
+.welcomeScreen .steps table {
+	margin: 0 auto;
+}
+
+.welcomeScreen .steps table {
+	margin: 0 auto;
+}
+
+.welcomeScreen .steps table td {
+	padding: 0 5px;
+}
+
+.welcomeScreen .steps table img {
+	width: 10px;
+}
+
+.welcomeScreen .centeredImg img {
+	width: 300px;
+	max-width: 80%;
+}
+
+.centeredImg {
+	text-align: center;
+}
+
+.nextButton {
+	position: absolute;
+	width: 100%;
+	bottom: 35px;
+}
+
+.nextButton a,
+.loginButton a {
+	background: none;
+	padding: 5px 15px;
+	border-radius: 15px;
+	border-color: #aaa;
+	border-width: 2px;
+	border-style: solid;
+	color: #aaa;
+}
+
+.welcomeBackground {
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	opacity: 0.3;
+}
+
+.welcomeBackground img {
+	width: 100%;
+	height: 100%;
+}
+
+.loginScreen {
+	background: #222;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	color: #aaa;
+	overflow-y: auto;
+	z-index: 1;
+}
+
+.loginScreen .centeredImg {
+	margin-top: 40px;
+}
+
+.loginScreen .centeredImg img {
+	width: 300px;
+	max-width: 80%;
+}
+
+.loginScreen .loginControls {
+	margin-top: 50px;
+	display: inline-block;
+}
+
+.loginScreen .loginControls .info {
+	width: 250px;
+	margin-bottom: 30px;
+}
+
+.loginScreen .loginControls .loginControl {
+	position: relative;
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+.loginScreen .loginControls .loginControl span,
+.loginScreen .loginControls .loginControl i {
+	position: absolute;
+}
+
+.loginScreen .loginControls .loginControl i {
+	font-size: 20px;
+}
+
+.loginScreen .loginControls .loginControl input {
+	background: none;
+	border: none;
+	border-bottom: gray;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	text-align: center;
+	width: 250px;
+}
+
+.loginScreen .loginControls .loginButton {
+	margin-bottom: 10px;
+	/* width: 220px; */
+}
+
+.loginScreen .loginControls .loginButton a {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	display: inline-block;
+	width: 100%;
+}
+
+.loginScreen .socialButtons {
+	margin: 0;
+	padding-bottom: 10px;
+}
+
+.loginScreen .socialButtons a {
+	color: #fff;
+	padding-top: 5px;
+	padding-bottom: 2px;
+	width: 100%;
+}
+
+.loginScreen .socialButtons i {
+	font-size: 20px;
+}
+
+.loginScreen .socialButtons .fbBtn,
+.loginScreen .socialButtons .gpBtn {
+	display: flex;
+	padding: 0 2px;
+}
+
+.loginScreen .socialButtons .fbBtn a {
+	background: #3b5998;
+}
+
+.loginScreen .socialButtons .gpBtn a {
+	background: #db4437;
+}
+
+.loginScreen .loginLinks {
+	margin-bottom: 10px;
+}
+
+.loginScreen .loginLinks a {
+	color: #bababa;
+}
+
+#loading,
+#closeMessage {
+	position: fixed;
+	z-index: 2;
+	margin: 50% auto;
+	left: 0;
+	right: 0;
+}
+
+#loading div,
+#closeMessage div {
+	width: 150px;
+	margin: 0 auto;
+	padding: 25px;
+	background: rgba(255, 255, 255, 0.9);
+	border-radius: 10px;
+	font-size: 18px;
+	text-align: center;
+	border: #b6b6b6 solid 1px;
+}
+
+#loading img,
+#closeMessage img {
+	width: 50px;
+}
+
+.headerBar {
+	background: none;
+	border: none;
+}
+
+.headerBar .navbarLeftButton {
+	position: absolute;
+}
+
+.headerBar .headerLogo {
+	text-align: center;
+	margin-top: 5px;
+}
+
+.headerBar .headerLogo img {
+	width: 70%
+}
+
+.sidebar {
+	width: 250px;
+	padding: 5px;
+}
+
+.sidebar p,
+.sidebar a {
+	color: #aaa;
+}
+
+.sidebar .sidebarButtons {
+	padding: 0 10px;
+}
+
+.sidebar .sidebarButtons>div {
+	text-align: center;
+	padding: 0;
+}
+
+.sidebar .sidebarButtons a {}
+
+.sidebar .sidebarButtons a i {
+	font-size: 25px;
+}
+
+.sectionDivider {
+	text-align: center;
+}
+
+.mainArticles {
+	margin-top: 15px;
+}
+
+.mainArticles .mainArticle {
+	text-align: center;
+}
+
+.mainArticles .mainArticle img {
+	width: 100%;
+}
+
+.mainArticles .mainArticle .articleTitle {
+	color: #333;
+	font-size: 20px;
+	text-align: center;
+}
+
+.mainArticles .mainArticle .articlePrice {
+	color: #333;
+	font-size: 15px;
+	text-align: center;
+}
+
+.mainArticles .mainArticle .articleDesc {
+	color: #333;
+	font-size: 15px;
+	text-align: left;
+}
+
+.mainArticles .mainArticle .articleMainButton {
+	padding: 10px 15px;
+	color: #fff;
+	background: #333;
+}
+
+.mainOffers {}
+
+.mainOffers .mainOffer {
+	margin-bottom: 5px;
+}
+
+.mainOffers img {
+	width: 100%;
+}
+
+.accountData {
+	font-size: 18px
+}
+
+.accountData .row {
+	margin-top: 10px;
+	font-size: 15px;
+}
+
+.accountData .accountDataLabel {
+	font-weight: bold;
+	text-align: right;
+}
+
+.accountData .accountDataInfo {}
+
+.accountButtons {
+	margin-top: 25px;
+}
+
+.accountButtons .accountButton {
+	text-align: center;
+}
+
+.accountButtons .accountButton a {
+	color: #333;
+	font-size: 17px;
+}
+
+.accountButtons .accountButton i {
+	font-size: 40px;
+}
+
+.accountButtons .accountButton a div {
+	margin-top: 10px;
+}
+
+.accountButtons .accountButton img {
+	width: 70px;
+}
+
+.userWelcome {
+	padding: 10px 15px;
+}
+
+.userWelcome a i {
+	font-size: 25px;
+}
+
+.historyDetail {
+	color: #222222;
+}
+
+.historyDetail .historyTotal {
+	font-size: 18px;
+	margin-top: 15px;
+}
+
+.products .product .productOrderPrice {
+	font-size: 15px;
+}
+
+.products .product .productOrderDescription {
+	font-size: 11px;
+}
+
+.products .product .productOrderImage {
+	width: 100%;
+}
+
+.products .product .productOrderName .skuText {
+	font-size: 10px;
+	color: #b9b9b9;
+}
+
+.summary {}
+
+.summary .summaryLabel {
+	text-align: right;
+}
+
+.searchInput {
+	border: none;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: gray;
+	width: 100%;
+	padding-left: 15px;
+}
+
+.searchInput:FOCUS {
+	border: none;
+}
+
+.infoLocationImage img {
+	width: 100%;
+	'
+
+}
+
+.coupons {
+	margin-bottom: 15px;
+}
+
+.coupons .coupon {
+	font-size: 45px;
+	text-align: center;
+}
+
+.pageTitle {
+	font-size: 18px;
+	text-align: center;
+}
+
+.genericButton {
+	margin: 0 auto;
+	text-align: center;
+	width: 220px;
+}
+
+.genericButton a {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	display: inline-block;
+	width: 100%;
+	background: none;
+	padding: 5px 15px;
+	border-radius: 15px;
+	border-color: #333;
+	border-width: 2px;
+	border-style: solid;
+	color: #333;
+}
+
+.sidebarList {
+	margin-top: 15px;
+	font-size: 13px;
+}
+
+.sidebarList hr {
+	width: 210px;
+	margin: 0 auto;
+	border-color: #2b2b2b;
+}
+
+.sidebarList a {
+	background: none;
+	border: none;
+	font-size: 14px;
+}
+
+.sidebarList a i {
+	margin-right: 7px;
+}
+
+.sidebarList a i.faRight {
+	float: right;
+}
+
+.sidebarFooter {
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	left: 5px;
+	right: 0;
+	padding: 0 10px;
+	width: 275px;
+}
+
+.sidebarFooter>div {
+	padding: 0;
+	font-size: 12px;
+}
+
+.sidebarFooter a i {
+	font-size: 20px;
+}
+
+.pinPage {
+	text-align: center;
+	margin-top: 30px;
+}
+
+.pinPage .pinText {
+	font-size: 15px;
+}
+
+.pinPage .pinNumber {
+	font-size: 30px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.categoryName {
+	position: absolute;
+	top: -125px;
+	padding: 10px 10px;
+	background-color: rgba(255, 255, 255, 0.6);
+	border-radius: 5px;
+}
+
+.categoryBanner {}
+
+.categoryBanner img {
+	width: 100%;
+}
+
+.about {
+	text-align: left;
+}
+
+.about .aboutTitle {
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.about .aboutText {
+	padding: 0 15px;
+}
+
+.headerButton {
+	color: #aaa;
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	font-size: 15px;
+}
+
+.searchMainButton {
+	position: absolute;
+	top: 0;
+	right: 5px;
+}
+
+.etaFooter {
+	padding: 15px 0;
+	background-color: #000;
+	position: absolute;
+	left: 0;
+	right: 0;
+}
+
+.etaFooter>div {
+	margin-left: 0;
+	margin-right: 0;
+	color: #fff;
+}
+
+.etaFooter a {
+	color: #fff;
+	font-size: 20px;
+}
+
+.centered {
+	text-align: center;
+}
+
+.black {
+	color: #000;
+}
+
+.owl-controls {
+	position: absolute;
+	top: 50px;
+	width: 100%;
+}
+
+.owl-next {
+	float: right;
+	margin-top: -15px;
+}
+
+.owl-prev span,
+.owl-next span {
+	padding: 5px;
+	background-color: rgba(0, 0, 0, 0.3);
+	border-radius: 5px;
+}
+
+.secImageContainer {
+	margin-top: 15px;
+}
+
+.secImage {
+	text-align: center;
+}
+
+.secImage img {
+	max-width: 125px;
+}
+
+.vAlign {
+	display: flex;
+	align-items: center;
+}
+
+.emptyMessage {
+	padding: 30px;
+	text-align: center;
+	font-style: italic;
+}
+
+.lonelyButton {
+	width: 100%;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #333;
+	padding: 5px 15px;
+	color: #333;
+}
+
+.pinButtonHome {
+	color: #aaa;
+	padding: 5px 15px;
+	border-color: #333;
+	border-width: 1px;
+	border-style: solid;
+	margin-top: 5px;
+	background: #333;
+	border-radius: 10px;
+}
+
+.posFixed {
+	position: fixed;
+	bottom: 0;
+}

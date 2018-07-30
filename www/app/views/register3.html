@@ -1,0 +1,24 @@
+<div class="loginScreen">
+
+    <div class="centeredImg">
+        <img src="img/logoWhite.png" />
+    </div>
+
+    <div class="loginControls">
+
+        <p class="info">Para verificar tu identidad, hemos enviado a tu número celular un código, ingresalo a continuación:</p>
+
+        <div class="loginControl">
+            <i class="fa fa-lock"></i>
+            <input type="text" placeholder="Código de seguridad" ng-model="code" />
+        </div>
+
+        <div class="loginButton">
+            <a href="#/login" ng-click="registerStep3()">Continuar</a>
+        </div>
+
+        <div class="loginLinks">
+            <a href="#/login">¿Ya tienes cuenta?</a>
+        </div>
+
+    </div>

@@ -1,0 +1,56 @@
+<div class="container-fluid" ng-init="sLoadHistory()">
+
+	<h3 style="margin: 0; margin-bottom: 15px;">Tu historial de ordenes:
+	</h3>
+
+	<a href="javascript:void(0)" ng-repeat="d in bHistory">
+		<div class="row historyDetail">
+			<div class="col-xs-9 ">
+				<h4 class="historyDetailLocal">{{d.local}}</h4>
+				<div class="historyDetailDate">{{d.fecha}}</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="historyTotal">${{d.monto}}</div>
+			</div>
+
+		</div>
+	</a>
+	<hr>
+	<!-- <a href="#/historyDetail">
+		<div class="row historyDetail">
+			<div class="col-xs-9 ">
+				<h4 class="historyDetailLocal">Etafashion CCI</h4>
+				<div class="historyDetailDate">Miercoles 31 de agosto, 2016</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="historyTotal">$62.20</div>
+			</div>
+		</div>
+	</a>
+	<hr>
+	<a href="#/historyDetail">
+		<div class="row historyDetail">
+			<div class="col-xs-9 ">
+				<h4 class="historyDetailLocal">Etafashion CCI</h4>
+				<div class="historyDetailDate">Miercoles 14 de septiembre, 2016
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="historyTotal">$94.40</div>
+			</div>
+		</div>
+	</a>
+	<hr>
+	<a href="#/historyDetail">
+		<div class="row historyDetail">
+			<div class="col-xs-9 ">
+				<h4 class="historyDetailLocal">Etafashion Quicentro</h4>
+				<div class="historyDetailDate">Martes 27 de septiembre, 2016</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="historyTotal">$22.20</div>
+			</div>
+		</div>
+	</a> -->
+
+</div>
