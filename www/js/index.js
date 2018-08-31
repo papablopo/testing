@@ -13,7 +13,7 @@ var app = {
         storageBucket: "etafashion-pushnotifications.appspot.com",
         messagingSenderId: "317719226174"
       };
-      // firebase.initializeApp(config);
+       firebase.initializeApp(config);
     } catch (e) {
       console.log(e);
     }

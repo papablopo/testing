@@ -675,14 +675,26 @@ etaApp.controller('UserCtrl', function ($scope, $rootScope) {
 $scope.loginGoogle = function() {
 	try {
 		try {
-			firebase.initializeApp()
+			debugger;
+			!firebase.apps.length ? firebase.initializeApp() : firebase.app();		
+		
 		} catch (error) {
+			console.log(error);
 		}
+		/*var provider = new firebase.auth.GoogleAuthProvider();
+		provider.addScope('https://www.googleapis.com/auth/plus.login');
+		debugger;
+		firebase.auth().getRedirectResult().then(function(authData) {
+			console.log(authData);
+		}).catch(function(error) {
+			console.log(error);
+		});*/
 		var provider = new firebase.auth.GoogleAuthProvider();
+		//provider.addScope('https://www.googleapis.com/auth/plus.login');
+		
 		firebase.auth().signInWithRedirect(provider).then(function() {
 			return firebase.auth().getRedirectResult();
 		  }).then(function(result) {
-			  alert(result);
 			// This gives you a Google Access Token.
 			// You can use it to access the Google API.
 			var token = result.credential.accessToken;
@@ -694,6 +706,7 @@ $scope.loginGoogle = function() {
 			var errorCode = error.code;
 			var errorMessage = error.message;
 		  });
+
 	} catch (error) {
 		alert(error)
 	}

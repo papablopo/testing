@@ -23,6 +23,22 @@
           }
         },
         {
+          "client_id": "317719226174-0m6etlp9pl9catnc7535dk49ce8r9uhk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.neptuno.eta",
+            "certificate_hash": "074c1583c489ffe58cd1e0bda4b0158a17907ecc"
+          }
+        },
+        {
+          "client_id": "317719226174-f59k35lp1bdevgguf2ibe4epaf50tss7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.neptuno.eta",
+            "certificate_hash": "2a2b2575329fec29804c1ba58c440590d16aa00c"
+          }
+        },
+        {
           "client_id": "317719226174-ldj2dh5ohr1imdvccsmhld6kq2ll00tj.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -42,6 +58,13 @@
             {
               "client_id": "317719226174-ldj2dh5ohr1imdvccsmhld6kq2ll00tj.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "317719226174-qbk9v9kbam96v6931114g07ccraevia8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.neptuno.et"
+              }
             }
           ]
         },
