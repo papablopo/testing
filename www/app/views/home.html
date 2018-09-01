@@ -10,7 +10,7 @@
 
 	<div class="owl-carousel carouselBanners" style="margin-top: -15px;">
 		<div ng-repeat="b in promosBanners">
-			<a href="javascript:void(0)" ng-click="openLink(b.txtUrl); trackFb(1);">
+			<a href="javascript:void(0)" ng-click="openLink(b.txtUrl); trackFb(1,b.id,b.strTittle);">
 				<img ng-src="{{b.txtPathImg}}" />
 			</a>
 		</div>
@@ -28,7 +28,7 @@
 	<!-- 	<div class="mainArticles row"> -->
 	<div class="owl-carousel carouselProducts">
 		<div class="mainArticle" ng-repeat="d in promosProducts">
-			<a href="javascript:void(0)" ng-click="openLink(d.txtUrl); trackFb(2);"
+			<a href="javascript:void(0)" ng-click="openLink(d.txtUrl); trackFb(2,d.id,d.strTittle));"
 				class="centered black">
 				<img ng-src="{{d.txtPathImg}}" />
 				<p class="articleTitle">{{d.strTittle}}</p>
@@ -42,7 +42,7 @@
 	<div class="mainArticles row">
 		<div class="mainArticle col-xs-12" ng-repeat="prom in promosOffers"
 			style="margin-bottom: 5px;">
-			<a href="javascript:void(0)" ng-click="openPromoDetail(prom.txtUrl); trackFb(3);">
+			<a href="javascript:void(0)" ng-click="openPromoDetail(prom.txtUrl); trackFb(3,prom.id,prom.strTittle));">
 				<img ng-src="{{prom.txtPathImg}}" />
 			</a>
 			<hr>
@@ -51,7 +51,7 @@
 
 	<div class="owl-carousel carouselBrands" style="margin-bottom: 15px;">
 		<div ng-repeat="b in promosBrands">
-			<a href="javascript:void(0)"  ng-click="openBrandLink(b.txtUrl)">
+			<a href="javascript:void(0)"  ng-click="openBrandLink(b.txtUrl); trackFb(4,b.id,b.strTittle);">
 				<img ng-src="{{b.txtPathImg}}" />
 			</a>
 		</div>

@@ -21,6 +21,16 @@ var app = {
   onDeviceReady: function () {
     app.receivedEvent("deviceready");
 
+    var fbLoginSuccess = function (userData) {
+      console.log("UserInfo: ", userData);
+    }
+     
+    facebookConnectPlugin.login(["public_profile"], fbLoginSuccess,
+      function loginError (error) {
+        console.error(error)
+      }
+    );
+    
     window.FirebasePlugin.onNotificationOpen(
       function (notification) {
         console.log(notification);

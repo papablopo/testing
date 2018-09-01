@@ -315,13 +315,13 @@ etaApp.controller('ProductsCtrl', function ($scope, $routeParams, $rootScope) {
 
 	}
 
-	$scope.trackFb = function (op) {
+	$scope.trackFb = function (op,id,title) {
 		var event = op == 1 ? 'banners' : op == 2 ? 'products' : op == 3 ? 'offers' : op == 4 ? 'brands' : 'products';
 
 		try {
 			FirebasePlugin.logEvent("select_content", {
 				content_type: "page_view",
-				item_id: event
+				item_id: event + "Id: " + id + " Titulo: " +  title
 			});
 		} catch (error) {}
 	}
