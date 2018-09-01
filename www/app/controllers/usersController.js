@@ -561,7 +561,101 @@ etaApp.controller('UserCtrl', function ($scope, $rootScope) {
 	$scope.loginFacebook = function () {
 
 		try {
-			CordovaFacebook.login({
+
+			var fbLoginSuccess = function (userData) 
+			{
+					   var token = userData.accessToken;
+						var userId = userData.userID;
+						/*Begin FacebookConnect Plugin */
+						facebookConnectPlugin.api(""+userId+"?fields=id,email,name", ["user_birthday"],
+							  function onSuccess (result) 
+						{
+    						console.log("Result: ", result);
+							
+							$scope.$apply(function () {
+								$scope.isInactivePage = false;
+							});
+
+							var passEncripted = this.password;
+							try {
+								passEncripted = encryptData(userData.id);
+							} catch (error) {
+					
+							}
+
+									var data = {
+										"codigo": "4000",
+										"array": {
+											"mail": result.email,
+											"txtPassword": passEncripted,
+											"strNombres": userData.name,
+											"intIdCompany": 1,
+											"tipologin": "1"
+										}
+									};
+									/*Begin User Login*/
+									ws.userLogin(data).done(function (response) {
+										if (response.codigo == 200) 
+										{
+											showAutoCloseMessage('Bienvenido ' + response.data.strNombres)
+											$scope.rs.user = response.data;
+											localStorage.setItem('userData', JSON.stringify(response.data));
+											// localStorage.setItem('userDocument', '1802036325');
+											window.location = '#/home';
+
+											try {
+												window.FirebasePlugin.subscribe("etafashionAll");
+											} catch (e) {
+												// alert('subs ' + e.message);
+											}
+
+													try {
+														var valorToken = "";
+														window.FirebasePlugin.getToken(function (token) {
+															// alert('tok ' + token);
+															// alert('tok: ' + token);
+															console.log(token);
+
+															if (token != null && token != '') {
+																callPost({
+																	dataText: '{"codigo":"4000","array":{"mail":"test@test.com","txtPassword":"12345678","strFrbsToken":"' + token + '"}}'
+																})
+															}
+
+															// valorToken = token;
+														}, function (error) {
+															// alert('err ' + error);
+														});
+													} catch (e) {
+														// alert(e.message);
+													}
+										} else {
+											showAutoCloseMessage(response.mensaje);
+										}
+
+									}).fail(function (error) {
+										if (error && error) {
+											showMessage(error);
+										} else {
+											showMessage(config.defaultWsErrorMsg);
+										}
+									}).always(function () {
+										hideLoading();
+									})/*ENd user login */
+
+						}, function onError (error) {
+							console.error("Failed: ", error);
+						  }
+					);/* FacebookConnect Plugin*/
+			}  
+
+			  facebookConnectPlugin.login(["public_profile",'user_friends', 'email'], fbLoginSuccess,
+				function loginError (error) {
+				  console.error(error)
+				}
+			  );
+			
+/* 			CordovaFacebook.login({
 				permissions: ['public_profile', 'user_friends', 'email'],
 				onSuccess: function (result) {
 					if (result.declined.length > 0) {
@@ -666,7 +760,7 @@ etaApp.controller('UserCtrl', function ($scope, $rootScope) {
 						alert("There was an error:" + result.errorLocalized);
 					}
 				}
-			});
+			}); */
 		} catch (e) {
 			console.log(e.message);
 		}
@@ -691,22 +785,31 @@ $scope.loginGoogle = function() {
 		});*/
 		var provider = new firebase.auth.GoogleAuthProvider();
 		//provider.addScope('https://www.googleapis.com/auth/plus.login');
-		
-		firebase.auth().signInWithRedirect(provider).then(function() {
-			return firebase.auth().getRedirectResult();
-		  }).then(function(result) {
+
+		firebase.auth().signInWithRedirect(provider).then(function(authData) {
+			//return firebase.auth().getRedirectResult();
+			showAutoCloseMessage('Bienvenido ' + authData.user)
+			$scope.rs.user = authData.user;
+			/*ANDRES QUe guardas aqui? */
+			localStorage.setItem('userData', JSON.stringify(authData.user));
+			// localStorage.setItem('userDocument', '1802036325');
+			window.location = '#/home';
+
+			try {
+				window.FirebasePlugin.subscribe("etafashionAll");
+			} catch (e) {
+				// alert('subs ' + e.message);
+			}
+
+
+
 			// This gives you a Google Access Token.
 			// You can use it to access the Google API.
 			var token = result.credential.accessToken;
 			// The signed-in user info.
 			var user = result.user;
-			// ...
-		  }).catch(function(error) {
-			// Handle Errors here.
-			var errorCode = error.code;
-			var errorMessage = error.message;
-		  });
 
+		  })
 	} catch (error) {
 		alert(error)
 	}
