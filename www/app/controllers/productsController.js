@@ -1,6 +1,7 @@
 var map;
 var currPosition;
 var markers = [];
+var geosendflag=false;
 
 etaApp.controller('ProductsCtrl', function ($scope, $routeParams, $rootScope) {
 
@@ -45,6 +46,9 @@ etaApp.controller('ProductsCtrl', function ($scope, $routeParams, $rootScope) {
 
 	$scope.pushContent = '';
 
+	$scope.geosendflag=false;
+
+
 	$scope.toggleSidebar = function () {
 		$('#wrapper').toggleClass('toggled');
 	};
@@ -60,6 +64,8 @@ etaApp.controller('ProductsCtrl', function ($scope, $routeParams, $rootScope) {
 	$scope.goToSearch = function () {
 		window.location = "#/search/" + $scope.txtSearch;
 	}
+
+
 
 	$scope.openPinView = function () {
 		window.location = "#/pin";
@@ -134,7 +140,44 @@ etaApp.controller('ProductsCtrl', function ($scope, $routeParams, $rootScope) {
 		} catch (error) {}
 	};
 
+
+$scope.getGeoPos=function(){
+
+/*	db.collection("cities").doc("new-city-id").set(data);
+
+
+	{
+		location: new firebase.firestore.GeoPoint(latitude, longitude)
+	  }*/
+
+};
+
 	$scope.sLoadHome = function () {
+		if ($scope.geosendflag==false){
+			
+			if (localStorage.userData) {
+				var userDatageo = JSON.parse(localStorage.userData);
+			}
+	debugger;
+			try {
+				navigator.geolocation.getCurrentPosition(
+				  function (pos) {
+					
+					FirebasePlugin.logEvent("Geolocation", {
+						lat: pos.coords.latitude,
+						lon: pos.coords.longitude,
+						mail: userDatageo.strMail
+					});
+				  }
+				);
+			  } catch (e) {
+				console.log(e);
+			
+			  }
+			
+			  $scope.geosendflag=true;
+		}
+		
 		$scope.rs.fixedFooter = false;
 
 		try {
@@ -142,6 +185,8 @@ etaApp.controller('ProductsCtrl', function ($scope, $routeParams, $rootScope) {
 				content_type: "page_view",
 				item_id: "home"
 			});
+
+			FirebasePlugin.setScreenName("home");
 		} catch (error) {}
 
 		if (localStorage.cat8) {
@@ -442,6 +487,50 @@ etaApp.controller('ProductsCtrl', function ($scope, $routeParams, $rootScope) {
 		}
 	};
 
+	$scope.sLoadPlaneta1 = function () {
+		showLoading();
+		try {
+			FirebasePlugin.logEvent("select_content", {
+				content_type: "page_view",
+				item_id: 'planeta1'
+			});
+			FirebasePlugin.setScreenName("planeta1");
+	
+		} catch (error) {
+			console.log(error);
+		}
+		
+		hideLoading();
+	
+	};
+
+	
+	$scope.sLoadPlaneta2 = function () {
+		showLoading();
+		try {
+			FirebasePlugin.logEvent("select_content", {
+				content_type: "page_view",
+				item_id: 'planeta2'
+			});
+			FirebasePlugin.setScreenName("planeta2");
+	
+		} catch (error) {
+			console.log(error);
+		}
+		
+		hideLoading();
+	};
+
+	$scope.sendContactUs = function () {
+		showLoading('Enviando');
+
+		setTimeout(function () {
+			showCloseMessage('Se ha enviado tu mensaje, pronto nos pondremos en contacto contigo');
+			window.location = '#/home';
+		}, 3000);
+
+	};
+
 	$scope.sendContactUs = function () {
 		showLoading('Enviando');
 
@@ -462,6 +551,12 @@ etaApp.controller('ProductsCtrl', function ($scope, $routeParams, $rootScope) {
 		try {
 			identification = encryptData(identification);
 			identification = encodeURIComponent(identification);
+			FirebasePlugin.logEvent("select_content", {
+				content_type: "page_view",
+				item_id: 'etacash'
+			});
+			FirebasePlugin.setScreenName("etacash");
+			
 		} catch (error) {
 
 		}
@@ -492,6 +587,16 @@ etaApp.controller('ProductsCtrl', function ($scope, $routeParams, $rootScope) {
 
 		$scope.rs.fixedFooter = true;
 		showLoading('Consultando');
+
+		try {
+			FirebasePlugin.logEvent("select_content", {
+				content_type: "page_view",
+				item_id: 'historial'
+			});
+			FirebasePlugin.setScreenName("historial");
+		} catch (error) {
+			
+		}
 
 		ws.getHistory(localStorage.userDocument).done(function (response) {
 			$scope.$apply(function () {
@@ -540,6 +645,7 @@ etaApp.controller('ProductsCtrl', function ($scope, $routeParams, $rootScope) {
 				content_type: "page_view",
 				item_id: 'categoria_' + $scope.categoryName
 			});
+			FirebasePlugin.setScreenName("categoria_"+ $scope.categoryName);
 		} catch (error) {}
 
 		$scope.rs.fixedFooter = false;
@@ -596,7 +702,7 @@ etaApp.controller('ProductsCtrl', function ($scope, $routeParams, $rootScope) {
 
 	};
 
-	$scope.positionSuccessForLocations = function () {
+	$scope.geoLocationSuccess = function () {
 		showLoading('Cargando');
 		ws.getPlaces($scope.categoryId).done(
 			function (response) {

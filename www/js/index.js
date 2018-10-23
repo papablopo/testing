@@ -21,7 +21,9 @@ var app = {
   onDeviceReady: function () {
     app.receivedEvent("deviceready");
 
-   
+    universalLinks.subscribe(null, function(eventData) {
+      alert('Did launch application from the link: ' + eventData.url);
+});
 
     window.FirebasePlugin.onNotificationOpen(
       function (notification) {

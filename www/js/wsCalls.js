@@ -67,6 +67,49 @@ ws = {
 		});
 		return deferred.promise();
 	},
+	
+	setRecoveryPass(data){
+		var deferred = $.Deferred();
+		callWs({
+			callType: 'POST',
+			service: 'forgotPassword',
+			//addData: '/' + data.userDocument,
+			data: JSON.stringify(data),	contentType: 'application/json',
+			success: function (response) {
+				if (response.codigo == "EMOK") {
+					deferred.resolve(response);
+				}
+
+			},
+			error: function () {
+				deferred.reject();
+			}
+		});
+		return deferred.promise();
+
+	},
+
+	setModifyPass(data){
+		var deferred = $.Deferred();
+		callWs({
+			callType: 'POST',
+			service: 'updatePassword',
+			//addData: '/' + data.userDocument,
+			data: JSON.stringify(data),	contentType: 'application/json',
+			success: function (response) {
+				if (response.codigo == "EMOK") {
+					deferred.resolve(response);
+				}
+
+			},
+			error: function () {
+				deferred.reject();
+			}
+		});
+		return deferred.promise();
+
+	},
+
 
 	//#endregion
 	getUserData: function (data) {

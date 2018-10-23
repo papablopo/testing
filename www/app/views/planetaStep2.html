@@ -1,4 +1,4 @@
-<div class="loginScreen">
+<div class="loginScreen" ng-init="sLoadPlaneta2()">
 
     <div class="centeredImg">
         <img src="img/logoWhite.png" />
@@ -6,8 +6,10 @@
 
     <div class="loginControls">
 
-        <p>Te hemos enviado un código de confirmación a tu número celular registrado, ingresalo a continuación por favor, en
-            caso de que no te llegue comunicate al
+        <p>Te hemos enviado un código de confirmación a tu número celular registrado   
+            <label >{{user.phoneNumber}}</label>
+            , ingresalo a continuación por favor, en
+            caso de no tener actualizado tu número celular, comunicate al
             <a href="tel:026002200">(02) 600-2200</a> para actualizar tus datos</p>
 
         <div class="loginControl">

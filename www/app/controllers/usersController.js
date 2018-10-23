@@ -18,10 +18,17 @@ etaApp.controller('UserCtrl', function ($scope, $rootScope) {
 	$scope.lastname = '';
 	$scope.identification = '';
 	$scope.username = '';
+	$scope.recoveremail = '';
 	$scope.password = '';
 	$scope.password2 = '';
 	$scope.fbToken = '';
 	$scope.firebaseCode = '';
+	$scope.phoneNumber='';
+	$scope.oldpassword='';
+	$scope.newpassword='';
+	$scope.newpassword2='';
+	$scope.showuserpass=true;
+
 
 	$scope.sLoadLogin = function () {
 		localStorage.removeItem('cat8');
@@ -31,6 +38,32 @@ etaApp.controller('UserCtrl', function ($scope, $rootScope) {
 			window.location = '#/home';
 		}
 	};
+
+	$scope.sLoadModifyPass = function(){
+
+		var datos = JSON.parse(localStorage.userData)
+		console.log(JSON.stringify(datos));
+		
+		try {
+			FirebasePlugin.logEvent("select_content", {
+				content_type: "page_view",
+				item_id: 'modificapass'
+			});
+			FirebasePlugin.setScreenName("modificapass");
+		} catch (error) {
+			
+		}
+			
+			setTimeout(function () {
+				if (datos.tipologin=='1'){
+					$scope.$apply(function () {
+						$scope.showuserpass = false;
+					});
+				}
+			}, 300);
+
+
+	}
 
 	$scope.sLoadRegister = function () {
 		try {
@@ -92,26 +125,26 @@ etaApp.controller('UserCtrl', function ($scope, $rootScope) {
 					// alert('subs ' + e.message);
 				}
 
-				try {
-					var valorToken = "";
-					window.FirebasePlugin.getToken(function (token) {
-						// alert('tok ' + token);
-						// alert('tok: ' + token);
-						// console.log(token);
+				// try {
+				// 	var valorToken = "";
+				// 	window.FirebasePlugin.getToken(function (token) {
+				// 		// alert('tok ' + token);
+				// 		// alert('tok: ' + token);
+				// 		// console.log(token);
 
-						if (token != null && token != '') {
-							callPost({
-								dataText: '{"codigo":"4000","array":{"mail":"test@test.com","txtPassword":"12345678","strFrbsToken":"' + token + '"}}'
-							})
-						}
+				// 		if (token != null && token != '') {
+				// 			callPost({
+				// 				dataText: '{"codigo":"4000","array":{"mail":"test@test.com","txtPassword":"12345678","strFrbsToken":"' + token + '"}}'
+				// 			})
+				// 		}
 
-						// valorToken = token;
-					}, function (error) {
-						// alert('err ' + error);
-					});
-				} catch (e) {
-					// alert(e.message);
-				}
+				// 		// valorToken = token;
+				// 	}, function (error) {
+				// 		// alert('err ' + error);
+				// 	});
+				// } catch (e) {
+				// 	// alert(e.message);
+				// }
 			} else {
 				showAutoCloseMessage(response.mensaje);
 			}
@@ -127,6 +160,11 @@ etaApp.controller('UserCtrl', function ($scope, $rootScope) {
 		})
 
 	};
+
+	$scope.goToModifyPass = function () {
+		window.location = "#/modifyPassword";
+		console.log("entre a redireccon");
+	}
 
 	$scope.register = function () {
 		debugger;
@@ -455,7 +493,7 @@ etaApp.controller('UserCtrl', function ($scope, $rootScope) {
 
 		ws.getPhone(idEncripted).done(function (response) {
 			// console.log(response);
-			if (response.resultado.estado != 'ERROR') {pwd
+			if (response.resultado.estado != 'ERROR') {
 				localStorage.setItem('userDocument', $scope.identification);
 				window.location = '#/etacash';
 			} else {
@@ -502,14 +540,137 @@ etaApp.controller('UserCtrl', function ($scope, $rootScope) {
 
 	}
 
-	$scope.recoverPassword = function () {
-		showLoading('Consultando');
+	$scope.modifyPassword = function () {
+		
+		var errMsg;
+		var datos = JSON.parse(localStorage.userData)
 
-		setTimeout(function () {
+		if (this.oldpassword=='' && datos.tipologin=='0') {
+			errMsg = 'Ingresa la contraseña actual';
+		} else if (this.newpassword=='') {
+			errMsg = 'Ingresa la nueva contraseña';
+		}else if (this.newpassword2=='') {
+			errMsg = 'Repite la nueva contraseña';
+		}else if(this.newpassword != this.newpassword2 ){
+			errMsg = 'Los campos con la nueva contraseña no coinciden, ingresalas nuevamente';
+		}else if(this.newpassword.length <=7 ){
+			errMsg = 'La contraseña debe tener al menos 8 caracteres';
+		}
+
+		if (errMsg) {
+			showAutoCloseMessage(errMsg);
+			return;
+		}
+
+		var data;		
+		
+		showLoading('Validando');
+		
+		console.log(JSON.parse(localStorage.getItem('fbtoken')));
+
+		if ( datos.tipologin=='0') {
+			 data = {
+				"codigo": "4000",
+				"array": {
+					"strMail": datos.strMail,
+					"intIdCompany": 1,
+					"txtPassword": encryptData(this.oldpassword),
+					"txtPasswordNew": encryptData(this.newpassword),
+					"intIdCompany": 1,
+					"tipologin": datos.tipologin 
+				}
+			};
+		}else{
+			data = {
+				"codigo": "4000",
+				"array": {
+					"strMail": datos.strMail,
+					"intIdCompany": 1,
+					"txtPassword": encryptData(JSON.parse(localStorage.getItem('fbtoken'))),
+					"txtPasswordNew": encryptData(this.newpassword),
+					"intIdCompany": 1,
+					"tipologin": datos.tipologin 
+				}
+			};
+		}
+		
+
+
+		ws.setModifyPass(data).done(function (response) {
+			if (response.codigo=="EMOK") 
+			{
+				hideLoading();
+				showCloseMessage('Se cambio tu contrasenia con exito')
+				location.href = "#/home";
+			} else {
+				hideLoading();
+				showAutoCloseMessage(JSON.stringify(response.mensaje));
+			}
+
+		}).fail(function (error) {
+			if (error && error) {
+				showMessage(JSON.stringify(error));
+			} else {
+				showMessage(config.defaultWsErrorMsg);
+			}
+		}).always(function () {
 			hideLoading();
-			showCloseMessage('Se ha enviado a tu correo las instrucciones para que puedas recuperar tu contraseña')
-			location.href = "#/login";
-		}, 1000);
+		})/*ENd user login */
+
+	}
+
+
+	$scope.recoverPassword = function () {
+		var errMsg;
+		if (this.recoveremail=='') {
+			errMsg = 'Ingresa tu correo';
+		} else if (!this.rs.valEmail(this.recoveremail)) {
+			errMsg = 'Correo incorrecto';
+		}
+
+		if (errMsg) {
+			showAutoCloseMessage(errMsg);
+			return;
+		}
+
+		try {
+			this.username = this.recoveremail.trim();
+			this.username = this.recoveremail.toLowerCase();
+		} catch (error) {
+
+		}
+		
+		
+		showLoading('Validando');
+
+		var data = {
+			"codigo": "4000",
+			"array": {
+				"strMail": this.username,
+				"intIdCompany": 1
+			}
+		};
+
+		ws.setRecoveryPass(data).done(function (response) {
+			if (response.codigo=="EMOK") 
+			{
+				hideLoading();
+				showCloseMessage('Se ha enviado a tu correo las instrucciones para que puedas recuperar tu contraseña')
+				location.href = "#/login";
+			} else {
+				hideLoading();
+				showAutoCloseMessage(response.mensaje);
+			}
+
+		}).fail(function (error) {
+			if (error && error) {
+				showMessage(error);
+			} else {
+				showMessage(config.defaultWsErrorMsg);
+			}
+		}).always(function () {
+			hideLoading();
+		})/*ENd user login */
 
 	}
 
@@ -521,6 +682,12 @@ etaApp.controller('UserCtrl', function ($scope, $rootScope) {
 			$scope.user = userData;
 		}
 
+      try {
+		  
+	  } catch (error) {
+		  
+	  }
+		hideLoading();
 		// ws.getUserData({
 		// 	userDocument: localStorage.userDocument,
 		// }).done(function (response) {
@@ -558,27 +725,23 @@ etaApp.controller('UserCtrl', function ($scope, $rootScope) {
 
 	}
 
-	$scope.loginFacebook = function () {
-
-		try {
-
-			var fbLoginSuccess = function (userData) 
+	var fbLoginSuccess = function (userData) 
 			{
-					   var token = userData.accessToken;
-						var userId = userData.userID;
+					   var token = userData.authResponse.accessToken;
+						var userId = userData.authResponse.userID;
+						localStorage.setItem('fbtoken', JSON.stringify(userId));
 						/*Begin FacebookConnect Plugin */
-						facebookConnectPlugin.api(""+userId+"?fields=id,email,name", ["user_birthday"],
+						facebookConnectPlugin.api("/"+userId+"?fields=id,email,name&access_token="+token, ["public_profile"],
 							  function onSuccess (result) 
 						{
-    						console.log("Result: ", result);
 							
 							$scope.$apply(function () {
 								$scope.isInactivePage = false;
 							});
 
-							var passEncripted = this.password;
+							var passEncripted = userId;
 							try {
-								passEncripted = encryptData(userData.id);
+								passEncripted = encryptData(userId);
 							} catch (error) {
 					
 							}
@@ -588,16 +751,20 @@ etaApp.controller('UserCtrl', function ($scope, $rootScope) {
 										"array": {
 											"mail": result.email,
 											"txtPassword": passEncripted,
-											"strNombres": userData.name,
+											"strNombres": result.name,
 											"intIdCompany": 1,
 											"tipologin": "1"
 										}
 									};
+
+									
 									/*Begin User Login*/
 									ws.userLogin(data).done(function (response) {
 										if (response.codigo == 200) 
 										{
 											showAutoCloseMessage('Bienvenido ' + response.data.strNombres)
+											
+											response.data["tipologin"] = "1";
 											$scope.rs.user = response.data;
 											localStorage.setItem('userData', JSON.stringify(response.data));
 											// localStorage.setItem('userDocument', '1802036325');
@@ -609,26 +776,28 @@ etaApp.controller('UserCtrl', function ($scope, $rootScope) {
 												// alert('subs ' + e.message);
 											}
 
-													try {
-														var valorToken = "";
-														window.FirebasePlugin.getToken(function (token) {
-															// alert('tok ' + token);
-															// alert('tok: ' + token);
-															console.log(token);
+											
 
-															if (token != null && token != '') {
-																callPost({
-																	dataText: '{"codigo":"4000","array":{"mail":"test@test.com","txtPassword":"12345678","strFrbsToken":"' + token + '"}}'
-																})
-															}
+													// try {
+													// 	var valorToken = "";
+													// 	window.FirebasePlugin.getToken(function (token) {
+													// 		// alert('tok ' + token);
+													// 		// alert('tok: ' + token);
+													// 		console.log(token);
 
-															// valorToken = token;
-														}, function (error) {
-															// alert('err ' + error);
-														});
-													} catch (e) {
-														// alert(e.message);
-													}
+													// 		if (token != null && token != '') {
+													// 			callPost({
+													// 				dataText: '{"codigo":"4000","array":{"mail":"test@test.com","txtPassword":"12345678","strFrbsToken":"' + token + '"}}'
+													// 			})
+													// 		}
+
+													// 		// valorToken = token;
+													// 	}, function (error) {
+													// 		// alert('err ' + error);
+													// 	});
+													// } catch (e) {
+													// 	// alert(e.message);
+													// }
 										} else {
 											showAutoCloseMessage(response.mensaje);
 										}
@@ -649,7 +818,12 @@ etaApp.controller('UserCtrl', function ($scope, $rootScope) {
 					);/* FacebookConnect Plugin*/
 			}  
 
-			  facebookConnectPlugin.login(["public_profile",'user_friends', 'email'], fbLoginSuccess,
+	$scope.loginFacebook = function () {
+
+		try {
+			
+
+			  facebookConnectPlugin.login(["public_profile", 'email'], fbLoginSuccess,
 				function loginError (error) {
 				  console.error(error)
 				}
@@ -775,31 +949,33 @@ $scope.loginGoogle = function() {
 		} catch (error) {
 			console.log(error);
 		}
-		/*var provider = new firebase.auth.GoogleAuthProvider();
-		provider.addScope('https://www.googleapis.com/auth/plus.login');
-		debugger;
-		firebase.auth().getRedirectResult().then(function(authData) {
-			console.log(authData);
-		}).catch(function(error) {
-			console.log(error);
-		});*/
 		var provider = new firebase.auth.GoogleAuthProvider();
 		//provider.addScope('https://www.googleapis.com/auth/plus.login');
-
 		firebase.auth().signInWithRedirect(provider).then(function(authData) {
-			//return firebase.auth().getRedirectResult();
+				firebase.auth().getRedirectResult().then(function(authData) {
+					console.log(authData);
+				}).catch(function(error) {
+					console.log(error);
+				});
+			});		
+		/* var provider = new firebase.auth.GoogleAuthProvider();
+		//provider.addScope('https://www.googleapis.com/auth/plus.login');
+		firebase.auth().signInWithRedirect(provider).then(function(authData) {
+			return firebase.auth().getRedirectResult();
+		}).then(function(result) {
+
+			
+			
 			showAutoCloseMessage('Bienvenido ' + authData.user)
 			$scope.rs.user = authData.user;
-			/*ANDRES QUe guardas aqui? */
+
 			localStorage.setItem('userData', JSON.stringify(authData.user));
 			// localStorage.setItem('userDocument', '1802036325');
 			window.location = '#/home';
 
-			try {
+		
 				window.FirebasePlugin.subscribe("etafashionAll");
-			} catch (e) {
-				// alert('subs ' + e.message);
-			}
+			
 
 
 
@@ -809,7 +985,10 @@ $scope.loginGoogle = function() {
 			// The signed-in user info.
 			var user = result.user;
 
-		  })
+		  }).catch(function (error){
+				alert(error);
+		  }); */
+
 	} catch (error) {
 		alert(error)
 	}
@@ -818,48 +997,34 @@ $scope.loginGoogle = function() {
 	$scope.getFacebookData = function () {
 
 		try {
-			CordovaFacebook.login({
-				permissions: ['public_profile', 'user_friends', 'email'],
-				onSuccess: function (result) {
-					if (result.declined.length > 0) {
-						// alert("The User declined something!");
-					} else {
-						var token = result.accessToken;
-						var userId = result.userID;
 
-						CordovaFacebook.graphRequest({
-							path: '/me',
-							params: {
-								fields: 'email,id,first_name,last_name,gender,link,name'
-							},
-							onSuccess: function (userData) {
-								$scope.$apply(function () {
+			facebookConnectPlugin.login(["public_profile", 'email'], function (response){
 
-									$scope.completeName = userData.name;
-									$scope.name = userData.name;
-									$scope.username = userData.email;
-									$scope.fbToken = userData.id;
+				facebookConnectPlugin.api("/"+response.authResponse.userID+"?fields=id,email,name&access_token="+response.authResponse.accessToken, ["public_profile"],
+							  function onSuccess (result) 
+						{
+    						
+							
+							$scope.$apply(function () {
+								$scope.isInactivePage = false;
+								$scope.completeName = result.name;
+								$scope.name = result.name;
+								$scope.username = result.email;
+								$scope.fbToken = response.authResponse.userID;
+							});
 
-								});
+						
 
-							},
-							onFailure: function (result) {
-								if (result.error) {
-									Error.log('error', 'There was an error in graph request:' + result.errorLocalized);
-								}
-							}
 						});
+								
+								
+			},
+			function loginError (error) {
+			  console.error(error)
+			}
+		  );
 
-					}
-				},
-				onFailure: function (result) {
-					if (result.cancelled) {
-						console.log("Hubo un problema, por favor intentalo más tarde");
-					} else if (result.error) {
-						console.log("There was an error:" + result.errorLocalized);
-					}
-				}
-			});
+			
 		} catch (e) {
 			alert(e.message);
 		}
@@ -888,15 +1053,21 @@ $scope.loginGoogle = function() {
 		ws.getPhone(identification).done(function (response) {
 			try {
 				if (response.codigo == "200") {
-					debugger;
+
 					if (response.resultado.estado == 'OK') {
 						var phoneNumber = response.resultado.celular;
 						try {
 							if (phoneNumber.length == 10) {
+								
 								phoneNumber = '+593' + phoneNumber.substr(1);
 							}
-						} catch (error) {
+							$scope.$apply(function () {
 
+								$scope.phoneNumber = phoneNumber.substring(phoneNumber.length-3 , phoneNumber.length);
+							});
+							
+						} catch (error) {
+							console.log("number"+error);
 						}
 						window.FirebasePlugin.verifyPhoneNumber(phoneNumber, 120, function (credential) {
 							console.log(credential);
@@ -908,6 +1079,8 @@ $scope.loginGoogle = function() {
 
 						}, function (error) {
 							console.error(error);
+							hideLoading();
+						showCloseMessage(error);
 						});
 					} else {
 						hideLoading();

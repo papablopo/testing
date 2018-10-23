@@ -93,6 +93,9 @@ etaApp.config(function ($routeProvider) {
 	}).when("/search/:keyword", {
 		templateUrl: "app/views/search.html",
 		controller: 'ProductsCtrl'
+	}).when("/modifyPassword", {
+		templateUrl: "app/views/modifyPassword.html",
+		controller: 'UserCtrl'
 	}).otherwise({
 		redirectTo: '/'
 	});

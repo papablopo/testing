@@ -1,6 +1,6 @@
 {
   "name": "com.neptuno.eta",
-  "version": "1.0.2",
+  "version": "1.0.8",
   "displayName": "ETAFASHION",
   "cordova": {
     "platforms": [
@@ -11,7 +11,6 @@
     "plugins": {
       "cordova-plugin-geolocation": {},
       "cordova-plugin-buildinfo": {},
-      "cordova-plugin-browsertab": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-customurlscheme": {
         "URL_SCHEME": "com.firebase.cordova",
@@ -23,6 +22,7 @@
       "cordova-plugin-browsersync": {},
       "cordova-plugin-firebase": {},
       "cordova-universal-links-plugin": {},
+      "cordova-plugin-browsertab": {},
       "cordova-plugin-facebook4": {
         "APP_ID": "1421229451228873",
         "APP_NAME": "Etafashion",
